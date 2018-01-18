@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Choice
  *
- * @ORM\Table(name="choices")
+ * @ORM\Table(name="choice")
  * @ORM\Entity
  */
 class Choice
@@ -27,11 +27,5 @@ class Choice
      * @ORM\Column(name="label", type="string", length=255, nullable=false)
      */
     private $label;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Question")
-     */
-    private $questions;
-
 
 }

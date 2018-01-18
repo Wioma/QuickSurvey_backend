@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Person
  *
- * @ORM\Table(name="persons")
+ * @ORM\Table(name="person")
  * @ORM\Entity
  */
 class Person
@@ -27,17 +27,5 @@ class Person
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
-
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Response")
-     */
-    private $responses;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Survey")
-     */
-    private $surveys;
-
 
 }

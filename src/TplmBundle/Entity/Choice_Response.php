@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Choice_Response
  *
- * @ORM\Table(name="choices_responses")
+ * @ORM\Table(name="choice_response")
  * @ORM\Entity
  */
 class Choice_response
