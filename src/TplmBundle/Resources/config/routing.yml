@@ -1,0 +1,5 @@
+tplm_homepage:
+    path:     /
+    defaults: { _controller: TplmBundle:Default:index }
+
+

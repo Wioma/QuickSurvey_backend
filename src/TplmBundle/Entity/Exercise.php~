@@ -1,0 +1,202 @@
+<?php
+
+namespace TplmBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Exercise
+ *
+ * @ORM\Table(name="exercise")
+ * @ORM\Entity(repositoryClass="TplmBundle\Repository\ExerciseRepository")
+ */
+class Exercise
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255, unique=true)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="duration", type="time")
+     */
+    private $duration;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dCreated", type="datetime", nullable=true)
+     */
+    private $dCreated;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="likeQ", type="integer", nullable=true)
+     */
+    private $likeQ;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Program", inversedBy="exercises")
+     */
+    private $programs;
+
+     /**
+     * Exercise constructor.
+     */
+    public function __construct()
+    {
+    }
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Exercise
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Exercise
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set duration
+     *
+     * @param \DateTime $duration
+     *
+     * @return Exercise
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration
+     *
+     * @return \DateTime
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * Set dCreated
+     *
+     * @param \DateTime $dCreated
+     *
+     * @return Exercise
+     */
+    public function setDCreated($dCreated)
+    {
+        $this->dCreated = $dCreated;
+
+        return $this;
+    }
+
+    /**
+     * Get dCreated
+     *
+     * @return \DateTime
+     */
+    public function getDCreated()
+    {
+        return $this->dCreated;
+    }
+
+    /**
+     * Set likeQ
+     *
+     * @param integer $likeQ
+     *
+     * @return Exercise
+     */
+    public function setLikeQ($likeQ)
+    {
+        $this->likeQ = $likeQ;
+
+        return $this;
+    }
+
+    /**
+     * Get likeQ
+     *
+     * @return int
+     */
+    public function getLikeQ()
+    {
+        return $this->likeQ;
+    }
+}
+

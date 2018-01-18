@@ -1,0 +1,211 @@
+<?php
+
+namespace TplmBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Program
+ *
+ * @ORM\Table(name="program")
+ * @ORM\Entity(repositoryClass="TplmBundle\Repository\ProgramRepository")
+ */
+class Program
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255, unique=true)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="likeQ", type="integer", nullable=true)
+     */
+    private $likeQ;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dCreated", type="datetime", nullable=true)
+     */
+    private $dCreated;
+
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Exercise", mappedBy="programs")
+     */
+    private $exercises;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="programs")
+     */
+    private $users;
+
+
+    /**
+     * Program constructor.
+     */
+    public function __construct()
+    {
+    }
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Program
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Program
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Program
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set likeQ
+     *
+     * @param integer $likeQ
+     *
+     * @return Program
+     */
+    public function setLikeQ($likeQ)
+    {
+        $this->likeQ = $likeQ;
+
+        return $this;
+    }
+
+    /**
+     * Get likeQ
+     *
+     * @return int
+     */
+    public function getLikeQ()
+    {
+        return $this->likeQ;
+    }
+
+    /**
+     * Set dCreated
+     *
+     * @param \DateTime $dCreated
+     *
+     * @return Program
+     */
+    public function setDCreated($dCreated)
+    {
+        $this->dCreated = $dCreated;
+
+        return $this;
+    }
+
+    /**
+     * Get dCreated
+     *
+     * @return \DateTime
+     */
+    public function getDCreated()
+    {
+        return $this->dCreated;
+    }
+}
+

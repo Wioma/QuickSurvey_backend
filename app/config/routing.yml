@@ -1,0 +1,15 @@
+surveys:
+    type:   rest
+    resource:   TplmBundle\Controller\SurveyController
+
+persons:
+    type:   rest
+    resource:   TplmBundle\Controller\PersonController
+
+responses:
+    type:   rest
+    resource:   TplmBundle\Controller\ResponseController
+
+questions:
+    type:   rest
+    resource:   TplmBundle\Controller\QuestionController

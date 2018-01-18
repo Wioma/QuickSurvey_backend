@@ -1,0 +1,4 @@
+services:
+#    tplm.example:
+#        class: TplmBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
