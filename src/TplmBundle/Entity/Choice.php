@@ -28,4 +28,39 @@ class Choice
      */
     private $label;
 
+    /**
+     * Choice constructor.
+     * @param int $id
+     * @param string $label
+     */
+    public function __construct($label)
+    {
+       $this->label = $label;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+
+    /**
+     * @param string $label
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+    }
+
+
 }

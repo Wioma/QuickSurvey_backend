@@ -28,4 +28,40 @@ class Person
      */
     private $email;
 
+    /**
+     * Person constructor.
+     * @param string $email
+     */
+    public function __construct($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+
+
+
 }

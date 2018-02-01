@@ -31,21 +31,21 @@ class Survey
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCreated", type="datetime", nullable=true)
+     * @ORM\Column(name="dateCreated", type="date", nullable=true)
      */
     private $dateCreated;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateStart", type="datetime", nullable=true)
+     * @ORM\Column(name="dateStart", type="date", nullable=true)
      */
     private $dateStart;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateEnd", type="datetime", nullable=true)
+     * @ORM\Column(name="dateEnd", type="date", nullable=true)
      */
     private $dateEnd;
 
@@ -67,7 +67,26 @@ class Survey
      */
     private $persons;
 
-     /**
+    /**
+     * Survey constructor.
+     * @param string $label
+     * @param \DateTime $dateCreated
+     * @param \DateTime $dateStart
+     * @param \DateTime $dateEnd
+     * @param bool $isActive
+     * @param $author
+     */
+    public function __construct($label, \DateTime $dateCreated, \DateTime $dateStart, \DateTime $dateEnd, $isActive, $author)
+    {
+        $this->label = $label;
+        $this->dateCreated = $dateCreated;
+        $this->dateStart = $dateStart;
+        $this->dateEnd = $dateEnd;
+        $this->isActive = $isActive;
+        $this->author = $author;
+    }
+
+    /**
      * @return int
      */
     public function getId()
@@ -154,6 +173,42 @@ class Survey
     {
         $this->isActive = $isActive;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param mixed $author
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPersons()
+    {
+        return $this->persons;
+    }
+
+    /**
+     * @param mixed $persons
+     */
+    public function setPersons($persons)
+    {
+        $this->persons = $persons;
+    }
+
+
+
+
 
 
 
