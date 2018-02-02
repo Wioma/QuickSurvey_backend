@@ -87,7 +87,9 @@ class Survey
     }
 
     /**
-     * @return int
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -95,6 +97,22 @@ class Survey
     }
 
     /**
+     * Set label
+     *
+     * @param string $label
+     *
+     * @return Survey
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
      * @return string
      */
     public function getLabel()
@@ -103,14 +121,22 @@ class Survey
     }
 
     /**
-     * @param string $label
+     * Set dateCreated
+     *
+     * @param \DateTime $dateCreated
+     *
+     * @return Survey
      */
-    public function setLabel($label)
+    public function setDateCreated($dateCreated)
     {
-        $this->label = $label;
+        $this->dateCreated = $dateCreated;
+
+        return $this;
     }
 
     /**
+     * Get dateCreated
+     *
      * @return \DateTime
      */
     public function getDateCreated()
@@ -119,14 +145,22 @@ class Survey
     }
 
     /**
-     * @param \DateTime $dateCreated
+     * Set dateStart
+     *
+     * @param \DateTime $dateStart
+     *
+     * @return Survey
      */
-    public function setDateCreated($dateCreated)
+    public function setDateStart($dateStart)
     {
-        $this->dateCreated = $dateCreated;
+        $this->dateStart = $dateStart;
+
+        return $this;
     }
 
     /**
+     * Get dateStart
+     *
      * @return \DateTime
      */
     public function getDateStart()
@@ -135,14 +169,22 @@ class Survey
     }
 
     /**
-     * @param \DateTime $dateStart
+     * Set dateEnd
+     *
+     * @param \DateTime $dateEnd
+     *
+     * @return Survey
      */
-    public function setDateStart($dateStart)
+    public function setDateEnd($dateEnd)
     {
-        $this->dateStart = $dateStart;
+        $this->dateEnd = $dateEnd;
+
+        return $this;
     }
 
     /**
+     * Get dateEnd
+     *
      * @return \DateTime
      */
     public function getDateEnd()
@@ -151,31 +193,47 @@ class Survey
     }
 
     /**
-     * @param \DateTime $dateEnd
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return Survey
      */
-    public function setDateEnd($dateEnd)
+    public function setIsActive($isActive)
     {
-        $this->dateEnd = $dateEnd;
+        $this->isActive = $isActive;
+
+        return $this;
     }
 
     /**
-     * @return bool
+     * Get isActive
+     *
+     * @return boolean
      */
-    public function isActive()
+    public function getIsActive()
     {
         return $this->isActive;
     }
 
     /**
-     * @param bool $isActive
+     * Set author
+     *
+     * @param \TplmBundle\Entity\User_account $author
+     *
+     * @return Survey
      */
-    public function setIsActive($isActive)
+    public function setAuthor(\TplmBundle\Entity\User_account $author = null)
     {
-        $this->isActive = $isActive;
+        $this->author = $author;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get author
+     *
+     * @return \TplmBundle\Entity\User_account
      */
     public function getAuthor()
     {
@@ -183,36 +241,36 @@ class Survey
     }
 
     /**
-     * @param mixed $author
+     * Add person
+     *
+     * @param \TplmBundle\Entity\Person $person
+     *
+     * @return Survey
      */
-    public function setAuthor($author)
+    public function addPerson(Person $person)
     {
-        $this->author = $author;
+        $this->persons[] = $person;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Remove person
+     *
+     * @param \TplmBundle\Entity\Person $person
+     */
+    public function removePerson(Person $person)
+    {
+        $this->persons->removeElement($person);
+    }
+
+    /**
+     * Get persons
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPersons()
     {
         return $this->persons;
     }
-
-    /**
-     * @param mixed $persons
-     */
-    public function setPersons($persons)
-    {
-        $this->persons = $persons;
-    }
-
-
-
-
-
-
-
-
-
-
 }

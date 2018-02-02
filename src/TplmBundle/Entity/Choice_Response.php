@@ -27,13 +27,75 @@ class Choice_response
      */
     private $response;
 
-
     /**
      * @var int
      *
      * @ORM\Column(name="numberOrder", type="integer", nullable=true)
      */
     private $numberOrder;
+
+    /**
+     * Choice_response constructor.
+     * @param $choice
+     * @param $response
+     * @param int $numberOrder
+     */
+    public function __construct($choice, $response, $numberOrder)
+    {
+        $this->choice = $choice;
+        $this->response = $response;
+        $this->numberOrder = $numberOrder;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChoice()
+    {
+        return $this->choice;
+    }
+
+    /**
+     * @param mixed $choice
+     */
+    public function setChoice($choice)
+    {
+        $this->choice = $choice;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * @param mixed $response
+     */
+    public function setResponse($response)
+    {
+        $this->response = $response;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumberOrder()
+    {
+        return $this->numberOrder;
+    }
+
+    /**
+     * @param int $numberOrder
+     */
+    public function setNumberOrder($numberOrder)
+    {
+        $this->numberOrder = $numberOrder;
+    }
+
+
 
 
 }

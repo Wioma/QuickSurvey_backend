@@ -4,6 +4,7 @@ namespace TplmBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Question
  *
@@ -49,13 +50,10 @@ class Question
      */
     private $isMultiSelect;
 
-
     /**
-     * @ORM\ManyToMany(targetEntity="Choice", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Choice")
      */
     private $choices;
-
-
 
 
     /**
@@ -183,7 +181,7 @@ class Question
      *
      * @return Question
      */
-    public function addChoice(\TplmBundle\Entity\Choice $choice)
+    public function addChoice(Choice $choice)
     {
         $this->choices[] = $choice;
 
@@ -195,7 +193,7 @@ class Question
      *
      * @param \TplmBundle\Entity\Choice $choice
      */
-    public function removeChoice(\TplmBundle\Entity\Choice $choice)
+    public function removeChoice(Choice $choice)
     {
         $this->choices->removeElement($choice);
     }
