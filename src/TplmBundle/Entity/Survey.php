@@ -67,6 +67,9 @@ class Survey
      */
     private $persons;
 
+
+    public function __construct(){}
+
     /**
      * Survey constructor.
      * @param string $label
@@ -76,7 +79,7 @@ class Survey
      * @param bool $isActive
      * @param $author
      */
-    public function __construct($label, \DateTime $dateCreated, \DateTime $dateStart, \DateTime $dateEnd, $isActive, $author)
+    public function __construct1($label, \DateTime $dateCreated, \DateTime $dateStart, \DateTime $dateEnd, $isActive, $author)
     {
         $this->label = $label;
         $this->dateCreated = $dateCreated;

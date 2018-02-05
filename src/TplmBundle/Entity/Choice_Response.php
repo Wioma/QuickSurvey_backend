@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="choice_response")
  * @ORM\Entity
  */
-class Choice_response
+class Choice_Response
 {
 
     /**
