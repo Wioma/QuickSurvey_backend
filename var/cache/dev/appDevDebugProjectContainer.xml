@@ -579,7 +579,7 @@
                 <tag name="cache.pool" clearer="cache.default_clearer"/>
                 <argument>n7iqsqT60D</argument>
                 <argument>0</argument>
-                <argument>v9x16u+MDbs8aZz9DUCaf-</argument>
+                <argument>pyIFU5Dn78lfaKA9h+vRSN</argument>
                 <argument>C:/wamp/www/QuickSurvey_backend/var/cache/dev/pools</argument>
                 <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                 <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -776,7 +776,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>OKRWGDRg3q</argument>
       <argument>0</argument>
-      <argument>v9x16u+MDbs8aZz9DUCaf-</argument>
+      <argument>pyIFU5Dn78lfaKA9h+vRSN</argument>
       <argument>C:/wamp/www/QuickSurvey_backend/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -786,7 +786,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>FbROcQ7Upg</argument>
       <argument>0</argument>
-      <argument>v9x16u+MDbs8aZz9DUCaf-</argument>
+      <argument>pyIFU5Dn78lfaKA9h+vRSN</argument>
       <argument>C:/wamp/www/QuickSurvey_backend/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -796,7 +796,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>Up7gFaM0Jw</argument>
       <argument>0</argument>
-      <argument>v9x16u+MDbs8aZz9DUCaf-</argument>
+      <argument>pyIFU5Dn78lfaKA9h+vRSN</argument>
       <argument>C:/wamp/www/QuickSurvey_backend/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -1984,7 +1984,7 @@
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5a78cd2f443186.94783835</argument>
+            <argument>5a853f5dbed148.42022821</argument>
           </service>
         </argument>
       </argument>
@@ -2132,7 +2132,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>5a78cd2f443186.94783835</argument>
+            <argument>5a853f5dbed148.42022821</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2765,6 +2765,20 @@
         <argument type="service" id="sensio_framework_extra.converter.datetime"/>
         <argument>0</argument>
         <argument>datetime</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="FOS\RestBundle\Request\RequestBodyParamConverter" public="false">
+            <tag name="request.param_converter" converter="fos_rest.request_body" priority="-50"/>
+            <argument type="service" id="fos_rest.serializer"/>
+            <argument type="collection"/>
+            <argument></argument>
+            <argument>null</argument>
+            <argument>validationErrors</argument>
+          </service>
+        </argument>
+        <argument>-50</argument>
+        <argument>fos_rest.request_body</argument>
       </call>
     </service>
     <service id="sensio_framework_extra.converter.doctrine.orm" class="Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter">

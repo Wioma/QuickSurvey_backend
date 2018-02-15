@@ -43,20 +43,37 @@ class SurveyController extends Controller
     }
 
     /**
+     * @Rest\Get(path="/api/user/{id}/surveys", name="quickSurvey_get_surveysByUser", options={ "method_prefix" = false })
+     * @Rest\View()
+     * @ParamConverter("user", class="TplmBundle:User_account")
+     */
+    public function getSurveysByUserAction(User_account $user=null)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $surveys = $em->getRepository('TplmBundle:Survey')->findByAuthor($user);
+        if (isset($surveys)) {
+            array("message" => "Aucune enquete");
+        }
+        return $surveys;
+    }
+
+    /**
      * @Rest\Post(path="/api/user/{id}/survey", name="quickSurvey_post_survey", options={ "method_prefix" = false })
      * @Rest\View()
      * @ParamConverter("user", class="TplmBundle:User_account")
      */
+
     public function postSurveyAction(Request $request, User_account $user)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $survey = new Survey();
+        $survey = new Survey;
 
         $survey->setLabel($request->get('label'));
         $survey->setDateCreated(new \DateTime());
-        $survey->setDateStart($request->get('dateCreated'));
-        $survey->setDateEnd($request->get('dateEnd'));
+        $survey->setDateStart(new \DateTime($request->get('dateStart')));
+        $survey->setDateEnd(new \DateTime($request->get('dateEnd')));
         $survey->setIsActive((false));
 
         $persons = $request->get('persons');
@@ -77,6 +94,39 @@ class SurveyController extends Controller
         return array("message" => "Enquete creee");
     }
 
+/*
+    /**
+     * @Rest\Post(path="/api/user/{id}/survey", name="quickSurvey_post_survey", options={ "method_prefix" = false })
+     * @Rest\View()
+     * @ParamConverter("user", class="TplmBundle:User_account")
+     * @ParamConverter("newSurvey", converter="fos_rest.request_body")
+     */
+/*  public function postSurveyAction(User_account $user, Survey $newSurvey)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $newSurvey->setDateCreated(new \DateTime());
+        $newSurvey->setIsActive((false));
+
+        foreach ($newSurvey->getPersons() as $value){
+
+            $person = $em->getRepository('TplmBundle:Person')->find($value->getId());
+            $newSurvey->removePerson($value);
+            $newSurvey->addPerson($person);
+        }
+
+        if($user){
+            $newSurvey->setAuthor($user);
+        };
+
+
+
+        $em->persist($newSurvey);
+        $em->flush();
+
+        return array("message" => "Enquete creee");
+    }
+*/
     /**
      * @Rest\Put(path="/api/survey/{id}", name="quickSurvey_put_survey", options={ "method_prefix" = false })
      * @Rest\View()
@@ -141,7 +191,4 @@ class SurveyController extends Controller
             return array("message" => "Enquete supprimee");
         }
     }
-
-
-
 }

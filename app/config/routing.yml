@@ -13,3 +13,7 @@ responses:
 questions:
     type:   rest
     resource:   TplmBundle\Controller\QuestionController
+
+userAccount:
+    type:   rest
+    resource:   TplmBundle\Controller\UserAccountController

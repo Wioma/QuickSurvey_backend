@@ -126,16 +126,30 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
             }
 
-            // quickSurvey_post_survey
-            if (0 === strpos($pathinfo, '/api/user') && preg_match('#^/api/user/(?P<id>[^/]++)/survey$#s', $pathinfo, $matches)) {
-                if ($this->context->getMethod() != 'POST') {
-                    $allow[] = 'POST';
-                    goto not_quickSurvey_post_survey;
-                }
+            if (0 === strpos($pathinfo, '/api/user')) {
+                // quickSurvey_get_surveysByUser
+                if (preg_match('#^/api/user/(?P<id>[^/]++)/surveys$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_quickSurvey_get_surveysByUser;
+                    }
 
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'quickSurvey_post_survey')), array (  '_controller' => 'TplmBundle\\Controller\\SurveyController::postSurveyAction',  '_format' => NULL,));
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'quickSurvey_get_surveysByUser')), array (  '_controller' => 'TplmBundle\\Controller\\SurveyController::getSurveysByUserAction',  '_format' => NULL,));
+                }
+                not_quickSurvey_get_surveysByUser:
+
+                // quickSurvey_post_survey
+                if (preg_match('#^/api/user/(?P<id>[^/]++)/survey$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_quickSurvey_post_survey;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'quickSurvey_post_survey')), array (  '_controller' => 'TplmBundle\\Controller\\SurveyController::postSurveyAction',  '_format' => NULL,));
+                }
+                not_quickSurvey_post_survey:
+
             }
-            not_quickSurvey_post_survey:
 
             if (0 === strpos($pathinfo, '/api/survey')) {
                 // quickSurvey_put_survey
@@ -183,6 +197,31 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return array (  '_controller' => 'TplmBundle\\Controller\\PersonController::getPersonsAction',  '_format' => NULL,  '_route' => 'quickSurvey_get_persons',);
             }
             not_quickSurvey_get_persons:
+
+            if (0 === strpos($pathinfo, '/api/user')) {
+                // quickSurvey_get_user
+                if (preg_match('#^/api/user/(?P<username>[^/]++)/(?P<password>[^/]++)$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_quickSurvey_get_user;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'quickSurvey_get_user')), array (  '_controller' => 'TplmBundle\\Controller\\UserAccountController::getUserAccountAction',  '_format' => NULL,));
+                }
+                not_quickSurvey_get_user:
+
+                // quickSurvey_create_user
+                if ($pathinfo === '/api/user') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_quickSurvey_create_user;
+                    }
+
+                    return array (  '_controller' => 'TplmBundle\\Controller\\UserAccountController::createUserAccountAction',  '_format' => NULL,  '_route' => 'quickSurvey_create_user',);
+                }
+                not_quickSurvey_create_user:
+
+            }
 
         }
 
