@@ -198,6 +198,17 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
             not_quickSurvey_get_persons:
 
+            // quickSurvey_get_questions
+            if ($pathinfo === '/api/questions') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_quickSurvey_get_questions;
+                }
+
+                return array (  '_controller' => 'TplmBundle\\Controller\\QuestionController::getQuestionsAction',  '_format' => NULL,  '_route' => 'quickSurvey_get_questions',);
+            }
+            not_quickSurvey_get_questions:
+
             if (0 === strpos($pathinfo, '/api/user')) {
                 // quickSurvey_get_user
                 if (preg_match('#^/api/user/(?P<username>[^/]++)/(?P<password>[^/]++)$#s', $pathinfo, $matches)) {

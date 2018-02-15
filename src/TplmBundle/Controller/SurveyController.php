@@ -5,7 +5,6 @@ namespace TplmBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use TplmBundle\Entity\Survey;
 use TplmBundle\Entity\User_account;
-use TplmBundle\Entity\Survey_question;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
