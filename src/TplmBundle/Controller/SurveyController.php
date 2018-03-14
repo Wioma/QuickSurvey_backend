@@ -75,13 +75,13 @@ class SurveyController extends Controller
         $survey->setDateEnd(new \DateTime($request->get('dateEnd')));
         $survey->setIsActive((false));
 
-        $persons = $request->get('persons');
+        /*$persons = $request->get('persons');
 
         foreach ($persons as $value){
 
             $person = $em->getRepository('TplmBundle:Person')->find($value['id']);
             $survey->addPerson($person);
-        }
+        }*/
 
         if($user){
             $survey->setAuthor($user);
@@ -90,7 +90,7 @@ class SurveyController extends Controller
         $em->persist($survey);
         $em->flush();
 
-        return array("message" => "Enquete creee");
+        return $survey;
     }
 
 /*
