@@ -86,6 +86,7 @@ class Survey
         $this->author = $author;
     }
 
+
     /**
      * Get id
      *
@@ -94,6 +95,20 @@ class Survey
     public function getId()
     {
         return $this->id;
+    }
+
+     /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return Survey
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     /**

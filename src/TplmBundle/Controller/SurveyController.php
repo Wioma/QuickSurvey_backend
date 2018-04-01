@@ -67,30 +67,30 @@ class SurveyController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $survey = new Survey;
+        $survey = $em->getRepository('TplmBundle:Survey')->findByLabel($request->get('label'));
 
-        $survey->setLabel($request->get('label'));
-        $survey->setDateCreated(new \DateTime());
-        $survey->setDateStart(new \DateTime($request->get('dateStart')));
-        $survey->setDateEnd(new \DateTime($request->get('dateEnd')));
-        $survey->setIsActive((false));
+        if ($survey) {
+            return array("message" => "Cette enquête existe déjà");
+        } else {
 
-        /*$persons = $request->get('persons');
+           $survey = new Survey;
 
-        foreach ($persons as $value){
+           $survey->setLabel($request->get('label'));
+           $survey->setDateCreated(new \DateTime());
+           $survey->setDateStart(new \DateTime($request->get('dateStart')));
+           $survey->setDateEnd(new \DateTime($request->get('dateEnd')));
+           $survey->setIsActive((false));
 
-            $person = $em->getRepository('TplmBundle:Person')->find($value['id']);
-            $survey->addPerson($person);
-        }*/
-
-        if($user){
+           if($user){
             $survey->setAuthor($user);
-        };
+           };
 
-        $em->persist($survey);
-        $em->flush();
+          $em->persist($survey);
+          $em->flush();
 
-        return $survey;
+          return $survey;
+        }
+
     }
 
 /*
@@ -131,24 +131,26 @@ class SurveyController extends Controller
      * @Rest\View()
      * @ParamConverter("survey", class="TplmBundle:Survey")
      */
-    public function putSurveyAction(Request $request, Survey $survey=null)
+    public function putSurveyAction(Request $request, Survey $surveyUpdate, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        if($survey) {
+         $survey = $em->getRepository('TplmBundle:Survey')->findById($id);
 
-            $survey->setLabel($request->get('label'));
-            $survey->setDateCreated(new \DateTime());
-            $survey->setDateStart($request->get('dateCreated'));
-            $survey->setDateEnd($request->get('dateEnd'));
-            $survey->setIsActive((false));
+        if($survey && $surveyUpdate) {
+
+           /*$survey->setLabel($surveyUpdate->getLabel());
+           $survey->setDateCreated($surveyUpdate->getDateCreated());
+           $survey->setDateStart($surveyUpdate->getDateStart());
+           $survey->setDateEnd($surveyUpdate->getDateEnd());
+           $survey->setIsActive((false));*/
 
             //voir pour ajouter des persons
 
-            $em->persist($survey);
+            $em->merge($surveyUpdate);
             $em->flush();
 
-            return array("message" => "Enquete modifiee");
+            return $survey;
         }
     }
 

@@ -34,7 +34,7 @@ class UserAccountController extends Controller
          }
 
         //user inconnu
-        return array("message" => "identifiant est inconnu");
+        return array("message" => "L'identifiant est inconnu");
 
     }
 
@@ -63,8 +63,16 @@ class UserAccountController extends Controller
              return array("message" => "Le user ".$newUser->getLogin()." existe deja");
         }
         else {
-            //Sinon creation de l'utilisateur
-            $em->persist($newUser);
+
+            // Verification doublon email
+            $verifEmail = $em->getRepository('TplmBundle:User_account')->findOneBy(array("email" => $newUser->getEmail()));
+            if ($verifEmail) {
+                //Erreur user existe deja
+                 return array("message" => "L'email est déja utilisé par un autre utilisateur");
+            } else {
+                //Sinon creation de l'utilisateur
+                $em->persist($newUser);
+            }
         }
 
         $em->flush();
