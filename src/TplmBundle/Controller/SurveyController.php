@@ -131,13 +131,12 @@ class SurveyController extends Controller
      * @Rest\View()
      * @ParamConverter("survey", class="TplmBundle:Survey")
      */
-    public function putSurveyAction(Request $request, Survey $surveyUpdate, $id)
+    public function putSurveyAction(Request $request, Survey $survey, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-         $survey = $em->getRepository('TplmBundle:Survey')->findById($id);
 
-        if($survey && $surveyUpdate) {
+        if($survey) {
 
            /*$survey->setLabel($surveyUpdate->getLabel());
            $survey->setDateCreated($surveyUpdate->getDateCreated());
@@ -147,7 +146,7 @@ class SurveyController extends Controller
 
             //voir pour ajouter des persons
 
-            $em->merge($surveyUpdate);
+            $em->merge($survey);
             $em->flush();
 
             return $survey;

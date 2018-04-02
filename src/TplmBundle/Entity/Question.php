@@ -76,8 +76,23 @@ class Question
     public function getId()
     {
         return $this->id;
+
     }
 
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return Question
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+    
     /**
      * Set label
      *

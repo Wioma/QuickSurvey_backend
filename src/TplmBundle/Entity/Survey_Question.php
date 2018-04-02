@@ -38,8 +38,6 @@ class Survey_Question
 
 
 
-
-
     /**
      * @var int
      *
@@ -106,6 +104,21 @@ class Survey_Question
     public function setNumber($number)
     {
         $this->number = $number;
+    }
+
+    /**
+    * @param int $id
+    */
+   public function setId($id)
+   {
+       $this->id = $id;
+   }
+   /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
 
