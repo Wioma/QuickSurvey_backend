@@ -136,7 +136,7 @@ class QuestionController extends Controller
                
             }
             $em->flush();
-            return array("message"=>"creation questions Okdddd");
+
         }
     }
     /**
