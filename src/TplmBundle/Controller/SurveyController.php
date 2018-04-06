@@ -3,6 +3,7 @@
 namespace TplmBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use TplmBundle\Entity\Person;
 use TplmBundle\Entity\Survey;
 use TplmBundle\Entity\User_account;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -90,7 +91,34 @@ class SurveyController extends Controller
 
           return $survey;
         }
+    }
 
+
+    /**
+     * @Rest\Post(path="/api/survey/{id}/persons", name="quickSurvey_post_survey_personnes", options={ "method_prefix" = false })
+     * @Rest\View()
+     * @ParamConverter("survey", class="TplmBundle:Survey")
+     */
+
+    public function postSurveyPersonsAction(Request $request, Survey $survey)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        if ($survey) {
+
+            $persons = $request->get('personnes');
+
+            foreach ($persons as $element) {
+                $person = $em->getRepository('TplmBundle:Person')->findOneByEmail($element['email']);
+                if ($person) {
+                    $survey->addPerson($person);
+                }
+            }
+        }
+            $em->merge($survey);
+            $em->flush();
+
+            return $survey;
     }
 
 /*
