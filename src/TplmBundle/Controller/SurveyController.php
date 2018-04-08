@@ -112,6 +112,11 @@ class SurveyController extends Controller
                 $person = $em->getRepository('TplmBundle:Person')->findOneByEmail($element['email']);
                 if ($person) {
                     $survey->addPerson($person);
+                } else {
+                    $personCreated = new Person($element['email']);
+                    $em->persist($personCreated);
+                    $survey->addPerson($personCreated);
+
                 }
             }
         }

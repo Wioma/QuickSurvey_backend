@@ -25,13 +25,13 @@ class Survey_Question
     /**
      *
      *
-     * @ORM\ManyToOne(targetEntity="Survey", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Survey")
      * @ORM\JoinColumn(nullable=false)
      */
     private $survey;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Question", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Question")
      * @ORM\JoinColumn(nullable=false)
      */
     private $question;
